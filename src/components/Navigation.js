@@ -4,16 +4,16 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import App from '../App';
 import Search from './Search';
 
-function Navigation(){
+function Navigation(props){
   return(
     <div>
       <Router>
-        <Navbar>
-          <NavbarBrand href="/"><Link to="/">Stock Market Page</Link></NavbarBrand> 
+      <Navbar>
+          <NavbarBrand onClick={() => props.changeView("welcome")}><Link to="/">Stock Market Page</Link></NavbarBrand> 
           <Nav>
-            <NavItem><Link to="/search/">Search Page</Link></NavItem>
+            <NavItem onClick={() => props.changeView("search")}><Link to="/search/">Search Page</Link></NavItem>
           </Nav>
-        </Navbar>
+      </Navbar>
       </Router>
     </div>
   )
