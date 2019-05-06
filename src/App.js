@@ -39,11 +39,11 @@ function App() {
       case 'search': 
         return (
           <Search 
-          changeView={setView}
-          formSubmit={request}
-          formInput={searchForm} 
-          chosenTimeRange={timeRange} 
-          changeTimeRange={setTimeRange}
+         // changeView={setView}
+         // formSubmit={request}
+         // formInput={searchForm} 
+         // chosenTimeRange={timeRange} 
+         // changeTimeRange={setTimeRange}
           />
         )
       case 'stock':
