@@ -5,6 +5,7 @@ import Welcome from './components/Welcome';
 import Navigation from './components/Navigation';
 import Search from './components/Search';
 import Stock from './components/Stock';
+import { promised } from 'q';
 
 const BASE_URL = "https://api.iextrading.com/1.0";
 function App() {
@@ -12,6 +13,8 @@ function App() {
   const [timeRange, setTimeRange] = useState("Time Range");
   const [companySymbol, setCompanySymbol] = useState("");
   const [companyStock, setCompanyStock] = useState(null);
+  const [companyLogo, setCompanyLogo] = useState(null);
+  const [companyInfo, setCompanyInfo] = useState(null);
 
   function searchForm(){
     const form = document.getElementById("search-form");
@@ -19,8 +22,14 @@ function App() {
   }
 
   async function request(){
-    const res = await axios.get(`${BASE_URL}/stock/${companySymbol}/chart/${timeRange}`);
-    setCompanyStock(res.data);
+    const [chartRes, logoRes, infoRes] = await Promise.all([
+      axios.get(`${BASE_URL}/stock/${companySymbol}/chart/${timeRange}`),
+      axios.get(`${BASE_URL}/stock/${companySymbol}/logo`),
+      axios.get(`${BASE_URL}/stock/${companySymbol}/company`),
+    ]);
+    setCompanyStock(chartRes.data);
+    setCompanyLogo(logoRes.data.url);
+    setCompanyInfo(infoRes.data);
   }
   
   function getView(){
@@ -40,7 +49,9 @@ function App() {
       case 'stock':
           return (
             <Stock 
-            information={companyStock}
+            logo={companyLogo}
+            chart={companyStock}
+            info={companyInfo}
             />
           )
       default:

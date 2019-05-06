@@ -1,10 +1,13 @@
 import React from 'react';
+import StockHeading from './StockHeading';
 
 function Stock(props) {
-  console.log(props.information);
   return (
-    <div>
-      <h1>stock component</h1>
+    <div className="stock-component">
+      <StockHeading 
+      info={props.info}
+      logo={props.logo}
+      />
     </div>
   )
 };
