@@ -4,6 +4,7 @@ import axios from 'axios';
 import Welcome from './components/Welcome';
 import Navigation from './components/Navigation';
 import Search from './components/Search';
+import Stock from './components/Stock';
 
 const BASE_URL = "https://api.iextrading.com/1.0";
 function App() {
@@ -25,20 +26,25 @@ function App() {
   function getView(){
     switch (view) {
       case 'welcome':
-      return <Welcome />
+        return <Welcome />
       case 'search': 
         return (
           <Search 
+          changeView={setView}
           formSubmit={request}
           formInput={searchForm} 
           chosenTimeRange={timeRange} 
           changeTimeRange={setTimeRange}
           />
         )
+      case 'stock':
+          return (
+            <Stock 
+            information={companyStock}
+            />
+          )
       default:
-      return (
-        <Welcome />
-      )
+        return <Welcome />
     }
   }
 

@@ -28,7 +28,16 @@ function Search(props){
               <DropdownItem onClick={() => props.changeTimeRange("YTD")}>YTD</DropdownItem>
             </DropdownMenu>
           </InputGroupButtonDropdown>
-          <InputGroupAddon addonType="append"><Button onClick={() => props.formSubmit()} color="secondary">Search</Button></InputGroupAddon>
+          <InputGroupAddon addonType="append">
+              <Button 
+              onClick={
+                () => {
+                  props.formSubmit();
+                  props.changeView("stock");
+                }
+              } 
+              color="secondary">Search</Button>
+          </InputGroupAddon>
         </InputGroup>
       </div>
     );
