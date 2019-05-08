@@ -32,7 +32,7 @@ function Search(props){
               <Button 
               onClick={
                 () => {
-                  props.formSubmit();
+                  // props.formSubmit();
                   props.changeView("stock");
                 }
               } 
